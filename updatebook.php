@@ -36,12 +36,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Updatebook</title>
 
+    <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="css/plugins/steps/jquery.steps.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animsition.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet"> 
 
 </head>
 
@@ -102,10 +103,22 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row"><label class="col-sm-2 col-form-label">Genre:</label>
-                                                <div class="col-sm-10"><input type="text" class="form-control" name="genre" value="<?php  echo $row['Genre'];?>"></div>
+                                                <div class="col-sm-10"><select name='genre' id="genre" class="form-control white_bg" required="true">
+                                                
+                                                <?php
+                                                    $query=mysqli_query($con,"select * from tblgenre");
+                                                    while($row=mysqli_fetch_array($query))
+                                                    {
+                                                ?>    
+                                                    <option value="<?php echo $row['Genre'];?>"><?php echo $row['Genre'];?></option>
+                                                <?php } ?>
+                                                </select></div>
                                             </div>
+
                                             <div class="form-group row"><label class="col-sm-2 col-form-label">Quantity:</label>
-                                                <div class="col-sm-10"><input type="text" class="form-control" name="quantity" value="<?php  echo $row['Quantity'];?>"></div>
+                                                <div class="col-sm-10"><input type="text" class="form-control" name="quantity" value="<?php  echo $row['Quantity'];?>">
+                                            </div>
+                                                
                                             </div>
                                         </fieldset>
                                 </fieldset>
@@ -138,6 +151,16 @@
 
     <!-- Jquery Validate -->
     <script src="js/plugins/validate/jquery.validate.min.js"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/animsition.min.js"></script>
+    <script src="js/bootstrap-slider.min.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    <script src="js/headroom.js"></script>
+    <script src="js/masterchief.min.js"></script>
 </body>
 
 </html>

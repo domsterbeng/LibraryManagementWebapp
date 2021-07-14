@@ -87,14 +87,16 @@
                                         </div>
                                         <div class="form-group row"><label class="col-sm-2 col-form-label">Genre:</label>
                                             <div class="col-sm-10"><select name='genre' id="genre" class="form-control white_bg" required="true">
+                                            
                                             <?php
-                                                $query=mysqli_query($con,"select * from tblbooks");
-                                                    while($row=mysqli_fetch_array($query))
-                                                    {
+                                                $query=mysqli_query($con,"select * from tblgenre");
+                                                while($row=mysqli_fetch_array($query))
+                                                {
                                             ?>    
                                                 <option value="<?php echo $row['Genre'];?>"><?php echo $row['Genre'];?></option>
                                             <?php } ?>
                                             </select></div>
+
                                         </div>
                                         <div class="form-group row"><label class="col-sm-2 col-form-label">Quantity:</label>
                                             <div class="col-sm-10"><input type="text" class="form-control" name="quantity" required="true"></div>

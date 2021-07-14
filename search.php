@@ -33,7 +33,7 @@
             <div class="row border-bottom"></div>
                 <div class="row wrapper border-bottom white-bg page-heading">
                     <div class="col-lg-10">
-                        <h2>Search Order</h2>
+                        <h2>Search Book</h2>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a href="list.php">Home</a>
@@ -44,8 +44,85 @@
                         </ol>
                     </div>
                 </div>
+
+                <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <form name="directory" method="post" class="wizard-big">
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="form-label-group">
+                                                <p style="text-align: center; font-size: 18px"><strong>Search by Author, Genre, and/or Year:</strong>      <input type="text" id="searchdata" name="searchdata" cclass="form-control white_bg" required="required" autofocus="autofocus" ></p>            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <p style="text-align: center; "><button type="submit" name="search" class="btn btn-info btn-min-width mr-1 mb-1">Search</button></p>
+                            </form> 
+
+                                <?php
+                                    if(isset($_POST['search']))
+                                    { $sdata=$_POST['searchdata'];
+                                ?>
+                                 <table class="table table-bordered mg-b-0">
+                                    <h4 align="center">Result against "<?php echo $sdata;?>" keyword </h4>
+                                <thead>
+                                    <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Published Year</th>
+                                    <th>ISBN</th>
+                                    <th>Genre</th>
+                                    <th>Quantity</th>
+                                    <th>Action</th>
+                                    <th>Action</th>
+                                    </tr>
+                                </thead>
+                                
+                                <?php
+                                    $ret=mysqli_query($con,"select * from tblbooks where Author like '$sdata%' or Genre like '$sdata%' or PublishedYear like '$sdata%'");
+                                    $num=mysqli_num_rows($ret);
+                                    if($num>0){
+                                    $cnt=1;
+                                    while ($row=mysqli_fetch_array($ret)) {
+                                ?>
+
+                                <tbody>
+                                    <tr>
+                                    <td><?php echo $cnt;?></td>
+                                
+                                    <td><?php  echo $row['Title'];?></td>
+                                    <td><?php  echo $row['Author'];?></td>
+                                    <td><?php  echo $row['PublishedYear'];?></td>
+                                    <td><?php  echo $row['ISBN'];?></td>
+                                    <td><?php  echo $row['Genre'];?></td>
+                                    <td><?php  echo $row['Quantity'];?></td>
+                                    <td><a href="updatebook.php?editid=<?php echo $row['ID'];?>">Edit</a>
+                                    <td><a href="deletebook.php?delid=<?php echo $row['ID'];?>">Delete</a>
+                                    </tr>
+                                    <?php 
+                                        $cnt=$cnt+1;
+                                        } } else { 
+                                    ?>
+                                    <tr>
+                                        <td colspan="8"> No record found against this search</td>
+                                    </tr>
+                                    <?php } }?>
+                                    </tbody>
+                                </table>     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
+
+        
         <?php include_once('includes/footer.php');?>
 
     </div>
