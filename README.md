@@ -11,12 +11,12 @@
 
 ## Credential
 ### Admin Panel
-Username: admin
-Password: admin123
+Username: "admin"
+Password: "admin123"
 
 ### Database SQL Panel
-Username: root
-Password: newpassword
+Username: "root"
+Password: "newpassword"
 
 ## Objectives
 1. Admin able to login.
